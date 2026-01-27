@@ -2,4 +2,6 @@ git clone #link repository
 
 git add . #adiciona todos os arquivos da pasta para dar push
 
+git commit -m "mensagem"
+
 git push #sobe para o GitHub todos os arquivos da pasta
