@@ -1,0 +1,23 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.quadradoMaior{
+    background-color: blue;
+    height: 150px;
+    width: 150px;
+    display: flex;
+}
+
+.quadradoMenor{
+    background-color: orange;
+    height: 45px;
+    width: 45px;
+    display: flex;
+}
+
+.linha{
+    display: flex;
+    justify-content: space-between;
+}
