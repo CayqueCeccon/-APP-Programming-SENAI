@@ -15,7 +15,4 @@ function somar(n1, n2){
 function alterarImagem(){
     let imagem = document.getElementById('imagem')
     imagem.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEK3QSna9_9hluRYRpE4b1isc7OaxeYV_KGhe-E_WsDdFGLCdIS3Joc9Mjeumv-Qd8ggjFzNXXJKd02eTxhc7vLkzAIQ8mZs857txpNNrsyQ&s=10')
-
-    
-
 }
