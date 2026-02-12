@@ -3,3 +3,9 @@
     width: 200px;
     background-color: crimson;
 }
+
+.galeria{
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+}
