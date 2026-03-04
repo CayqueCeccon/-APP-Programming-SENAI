@@ -39,11 +39,48 @@ insertData(filteredOnlyDevs, 'devs')
 const filteredOnlyDesigns = users.filter((u) => u.role == 'designer')
 insertData(filteredOnlyDesigns, 'designers')
 const filteredOnlyManagers = users.filter((u) => u.role == 'manager')
+insertData(filteredOnlyManagers, 'managers')
 const filteredOnlyDataAnalysts = users.filter((u) => u.role == 'data_analyst')
+insertData(filteredOnlyDataAnalysts, 'dataAnalyst')
 const filterSalaryHigh = users.filter((u) => u.salary > 5000)
+insertData(filterSalaryHigh, 'highSalary')
 const filterSalaryLow = users.filter((u) => u.salary < 4000)
+insertData(filterSalaryLow, 'lowSalary')
 const filterAgeHigh = users.filter((u) => u.age > 30)
+insertData(filterAgeHigh, 'oldUsers')
 const filterAgeLow = users.filter((u) => u.age < 25)
+insertData(filterAgeLow, 'newUsers')
 const filterActiveDevs = users.filter((u) => u.role == 'dev' && u.active == true)
+insertData(filterActiveDevs, 'activesDataAnalyst')
 const filterSalaryDevs = users.filter((u) => u.role == 'dev' && u.salary > 4000)
+insertData(filterSalaryDevs, 'devsHighSalary')
 const filterOldManager = users.filter((u) => u.role == 'manager' && u.age > 30)
+insertData(filterOldManager, 'oldManagers')
+
+// Método Filter -> Filtrar de um vetor com base em uma condição
+// Método Find -> Encontrar um valor com base em uma condição
+// Método Reduce -> Reduz o vetor para um único valor
+
+const arr = [1,2,3,4,5]
+
+const somArr = arr.reduce((acc, value) => {
+    return acc + value
+}, 0)
+
+console.log(somArr)
+
+const ageAvg = users.reduce((acc, pessoa) => {
+    return acc + pessoa.age / users.length
+}, 0)
+
+console.log(ageAvg.toFixed(0))
+
+// Map transforma um vetor de acordo ocm uma condição
+
+const arr2 = [1,2,3,4,5]
+
+const mappedArr = arr2.map((arr) => {
+    return arr * 2
+})
+
+console.log(mappedArr)
