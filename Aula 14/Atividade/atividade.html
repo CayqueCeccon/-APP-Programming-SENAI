@@ -1,11 +1,14 @@
 <div style="height: 500px; width: 500px;">
     <canvas id="grafico1"></canvas>
+    <canvas id="grafico2"></canvas>
+    <canvas id="grafico3"></canvas>
+    <canvas id="grafico4"></canvas>
+    <canvas id="grafico5"></canvas>
+    <canvas id="grafico7"></canvas>
+    <canvas id="grafico8"></canvas>
+    <canvas id="grafico10"></canvas>
 </div>
 
-<div style="height: 500px; width: 500px;">
-    <canvas id="grafico2"></canvas>
-</div>
-  
   <script src="chart.js"></script>
   
   <script>
@@ -29,7 +32,14 @@
 
     const gf1 = document.getElementById('grafico1');
     const gf2 = document.getElementById('grafico2');
-  
+    const gf3 = document.getElementById('grafico3');
+    const gf4 = document.getElementById('grafico4');
+    const gf5 = document.getElementById('grafico5');
+    const gf7 = document.getElementById('grafico7');
+    const gf8 = document.getElementById('grafico8');
+    const gf10 = document.getElementById('grafico10');
+
+    //Faturamento por categoria
     const agrupado1 = vendas.reduce((acc, item) => {
         if (!acc[item.categoria]) {
             acc[item.categoria] = 0;
@@ -60,6 +70,7 @@
         }
     });
 
+    //Quantidade total por categoria
     const agrupado2 = vendas.reduce((acc, item) => {
         if (!acc[item.categoria]) {
             acc[item.categoria] = 0;
@@ -83,5 +94,175 @@
         }
     });
 
+    //Faturamento por cidade
+    const agrupado3 = vendas.reduce((acc, item) => {
+        if (!acc[item.cidade]) {
+            acc[item.cidade] = 0;
+        }
+        acc[item.cidade] += item.preco;
+        return acc;
+    }, {});
+
+    const cidade3 = Object.keys(agrupado3);
+    const preco3 = Object.values(agrupado3);
+
+    new Chart(gf3, {
+        type: 'bar',
+        data: {
+            labels: cidade3,
+            datasets: [{
+                label: "Faturamento:",
+                data: preco3,
+                borderWidth: 1
+            }],
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+    });
+
+    //Número de pedidos por cidade
+    const agrupado4 = vendas.reduce((acc, item) => {
+        if (!acc[item.cidade]) {
+            acc[item.cidade] = 0;
+        }
+        acc[item.cidade] += item.quantidade;
+        return acc;
+    }, {});
+
+    const cidade4 = Object.keys(agrupado4);
+    const quantidades4 = Object.values(agrupado4);
+
+    new Chart(gf4, {
+        type: 'pie',
+        data: {
+            labels: cidade4,
+            datasets: [{
+                label: "Quantidade:",
+                data: quantidades4,
+                borderWidth: 1
+            }]
+        }
+    });
+
+    //Total gasto por cliente
+    const agrupado5 = vendas.reduce((acc, item) => {
+        if (!acc[item.cliente]) {
+            acc[item.cliente] = 0;
+        }
+        acc[item.cliente] += item.preco;
+        return acc;
+    }, {});
+
+    const cliente5 = Object.keys(agrupado5);
+    const preco5 = Object.values(agrupado5);
+
+    new Chart(gf5, {
+        type: 'bar',
+        data: {
+            labels: cliente5,
+            datasets: [{
+                label: "Preço:",
+                data: preco5,
+                borderWidth: 1
+            }],
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+    });
+
+    //Distribuição de clientes
+    //Quantidade vendida por produto
+    const agrupado7 = vendas.reduce((acc, item) => {
+        if (!acc[item.produto]) {
+            acc[item.produto] = 0;
+        }
+        acc[item.produto] += item.quantidade;
+        return acc;
+    }, {});
+
+    const produto7 = Object.keys(agrupado7);
+    const quantidade7 = Object.values(agrupado7);
+
+    new Chart(gf7, {
+        type: 'bar',
+        data: {
+            labels: produto7,
+            datasets: [{
+                label: "Quantidade:",
+                data: quantidade7,
+                borderWidth: 1
+            }],
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+    });
+    //Faturamento por categoria
+    const agrupado8 = vendas.reduce((acc, item) => {
+        if (!acc[item.categoria]) {
+            acc[item.categoria] = 0;
+        }
+        acc[item.categoria] += item.preco;
+        return acc;
+    }, {});
+
+    const categoria8 = Object.keys(agrupado8);
+    const preco8 = Object.values(agrupado8);
+
+    new Chart(gf8, {
+        type: 'pie',
+        data: {
+            labels: categoria8,
+            datasets: [{
+                label: "Quantidade:",
+                data: preco8,
+                borderWidth: 1
+            }]
+        }
+    });
+    //Quantidade vs faturamento por categoria
+    //Vendas por mês
+    const agrupado10 = vendas.reduce((acc, item) => {
+        if (!acc[item.data]) {
+            acc[item.data] = 0;
+        }
+        acc[item.data] += item.quantidade;
+        return acc;
+    }, {});
+
+    const data10 = Object.keys(agrupado7);
+    const quantidade10 = Object.values(agrupado7);
+
+    new Chart(gf7, {
+        type: 'bar',
+        data: {
+            labels: data10,
+            datasets: [{
+                label: "Vendas por mês:",
+                data: quantidade10,
+                borderWidth: 1
+            }],
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+    });
   </script>
-   
