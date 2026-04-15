@@ -1,5 +1,8 @@
 const express = require('express');
+const mysql = require("mysql2")
+const cors = require("cors")
 const app = express();
+
 const port = 8080;
 
 app.use(express.json())
@@ -15,12 +18,60 @@ const connection = mysql.createConnection({
     port: 3307
 })
 
-console.log(connection)
+if(connection) {
+    console.log("Banco conectado!")
+}
+
+app.listen(port, () => {
+    console.log("Servidor rodando em http://localhost:8080")
+})
+
+app.get("/usuarios/:id", (req, res) => {
+    const { id } = req.params
+    connection.query("SELECT * FROM usuario WHERE id = ?", [id], (err, results) => {
+        if (err){
+            return
+        }
+        return res.status(200).send(results[0])
+    })
+})
 
 app.get('/', (req, res) =>{
     return res.send("Servidor funcionando corretamente!")
 })
 
-app.listen(port, () => {
-    console.log("Servidor rodando em http://localhost:8080")
+app.post('/registro', (req, res) => {
+    const { nome, email, senha } = req.body
+    connection.query("INSERT INTO usuario (nome, email, senha) VALUES (?, ?, ?)",
+        [nome, email, senha]
+    )
+
+    return res.status(201).send({ response: "Usuário registrado com sucesso!"})
+})
+
+app.post('/registro-aprendiz', (req, res) => {
+    const { nome, setor, idade } = req.body
+    connection.query("INSERT INTO usuario (nome, setor, idade) VALUES (?, ?, ?)",
+        [nome, setor, idade]
+    )
+
+    return res.status(201).send({ response: "Aprendiz registrado com sucesso!"})
+})
+
+app.get("/usuario-aprendiz", (req, res) => {
+    connection.query("SELECT * FROM aprendiz", (err, results) => {
+        if(err){
+            return
+        }
+        res.status(200).send({aprendiz:results})
+    })
+})
+
+app.get("/usuario", (req, res) => {
+    connection.query("SELECT * FROM usuario", (err, results) => {
+        if(err){
+            return
+        }
+        res.status(200).send({usuarios:results})
+    })
 })
