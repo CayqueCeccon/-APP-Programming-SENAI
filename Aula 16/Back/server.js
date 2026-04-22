@@ -1,3 +1,6 @@
+//Preciso acessar o caminho ./-app-programming-senai/Aula 16/Back
+//npm i cors express mysql2 nodemon
+//npm start
 const express = require('express');
 const mysql = require("mysql2")
 const cors = require("cors")
@@ -74,4 +77,29 @@ app.get("/usuario", (req, res) => {
         }
         res.status(200).send({usuarios:results})
     })
+})
+
+app.delete('/deletar/:id', (req, res) => {
+    const { id } = req.params
+    try{
+        connection.query("DELETE FROM usuario WHERE id = ?", [id])
+        return res.status(200).send({ message: "Usuário deletado com sucesso!"})
+    }
+    catch(e){
+        return res.status(500).send({error: e})
+    }
+})
+
+app.put('/atualizar/:id', (req, res) => {
+    const { id } = req.params
+    const { nome, email, senha } = req.body
+    try{
+        connection.query("UPDATE usuario SET nome = ?, email = ?, senha = ? WHERE id = ?",
+            [nome, email, senha, id]
+        )
+        return res.status(200).send({ message: "Usuário atualizado com sucesso!"})
+    }
+    catch{
+        return res.status(500).send({ error: "Ocorreu um erro ao atualizar!"})
+    }
 })
