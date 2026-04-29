@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade - CRUD</title>
+</head>
+<body>
+    <form id="form">
+        <input type="text" placeholder="Nome do Produto" id="nome_produto">
+        <input type="text" placeholder="Categoria" id="categoria">
+        <input type="number" placeholder="Quantidade" id="quantidade">
+        <input type="number" placeholder="Preço Produto" id="preco">
+        <input type="text" placeholder="Forma de Pagamento" id="forma_pagamento">
+        <input type="text" placeholder="Nome do Vendedor" id="nome_vendedor">
+        <button type="submit">Registrar</button>
+    </form>
+
+    <br>
+    <br>
+    <br>
+
+    <form id="formatt">
+        <input type="text" placeholder="Nome do Produto" id="nome_produtoatt">
+        <input type="text" placeholder="Categoria" id="categoriaatt">
+        <input type="number" placeholder="Quantidade" id="quantidadeatt">
+        <input type="number" placeholder="Preço Produto" id="precoatt">
+        <input type="text" placeholder="Forma de Pagamento" id="forma_pagamentoatt">
+        <input type="text" placeholder="Nome do Vendedor" id="nome_vendedoratt">
+    </form>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome Produto</th>
+                <th>Categoria</th>
+                <th>Quantidade</th>
+                <th>Preço Produto</th>
+                <th>Preço Total</th>
+                <th>Data Venda</th>
+                <th>Forma de Pagamento</th>
+                <th>Nome do Vendedor</th>
+            </tr>
+        </thead>
+        <tbody id="listaVendas">
+            <!-- O conteúdo da tabela virá aqui: Nome, email  -->
+        </tbody>
+    </table>
+
+    <script src="scripts/index.js"></script>
+</body>
+</html>
